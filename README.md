@@ -1,8 +1,31 @@
 # Lab 25 — Tối ưu hóa Chi phí GPU (GPU FinOps Workshop)
 
-> **AICB · Phase 2 · Track 2 (Infrastructure) · Day 25**
+> **AICB · Phase 2 · Track 2 (Infrastructure) · Day 25** — bài làm của **Phùng Thanh An (2A202603006)**
 > Kết hợp với slide `day25-gpu-finops-cost-optimization`.
 > Đầu ra chính: **Báo cáo chi phí GPU (baseline vs. optimized)** — đầu vào cho Milestone 2.
+
+---
+
+## Kết quả (tóm tắt)
+
+| | Baseline | Optimized | Thay đổi |
+|---|---|---|---|
+| Chi phí/tháng | $27,133 | $14,705 | **−$12,428 (−45,8%)** |
+| `$/1M-token` (inference API) | $6.488 | $1.126 | **−82,6%** |
+| `$/1M-token` (all-in, gồm thuê GPU) | $120.06 | $65.07 | −45,8% |
+
+| Đòn bẩy | Tiết kiệm/tháng |
+|---|---|
+| Purchasing (spot/reserved, risk-adjusted) | $10,105 |
+| Inference (cascade + cache + batch) | $1,212 |
+| Kill idle GPU (8 h/ngày) | $600 |
+| Right-size GPU quá khổ (H100 → A100) | $511 |
+| **Tổng** | **$12,428** |
+
+**Trạng thái kiểm tra:** `python verify.py` → **11/11 checks passed** · `pytest -q` → **15 passed**.
+**Phần mở rộng "Your Turn":** làm đủ **5/5** (risk-adjusted tier policy, right-size theo MBU, `cache_is_worth_it`, ngân sách reasoning, carbon-aware scheduling) — chi tiết và số đo trong [`WRITEUP.md`](WRITEUP.md) và `outputs/report.md`.
+
+**Các file nộp bài:** `outputs/report.md` · `outputs/savings.png` · `outputs/focus_export.csv` (2.400 dòng chuẩn FOCUS) · [`WRITEUP.md`](WRITEUP.md)
 
 ---
 
